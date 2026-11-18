@@ -1,1 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Five Machines — Anshul</title>
+<meta name="description" content="A descent through five systems: industrial control enforcement, video anomaly detection, image forensics, cyber-risk quantification and offline routing. Each one animates as you scroll, then hands you the controls.">
+<meta name="theme-color" content="#07090c">
+<meta property="og:title" content="Five Machines — Anshul">
+<meta property="og:description" content="Scroll down through five working systems. Each one explains itself, then lets you operate it.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307090c'/%3E%3Cpath d='M16 5v22M9 11h14' stroke='%23f2a33c' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<div class="spine" aria-hidden="true"><i data-bead></i></div>
+
+<nav class="ticks" aria-label="Stations">
+  <button type="button" data-go="s1">01</button>
+  <button type="button" data-go="s2">02</button>
+  <button type="button" data-go="s3">03</button>
+  <button type="button" data-go="s4">04</button>
+  <button type="button" data-go="s5">05</button>
+</nav>
+
+<main>
+
+<!-- ======================= opening ======================= -->
+<header class="open" id="top">
+  <div class="wrap">
+    <p class="who">Anshul · Final-year ECE · Mangalore</p>
+    <h1>Five machines<span>and how each one fails.</span></h1>
+    <p class="say">Industrial control security, computer-vision forensics, embedded tooling. Scroll down and each system builds itself in front of you — then hands you the controls and tells you, plainly, where it stops.</p>
+    <div class="hint"><em></em><span>Begin the descent</span></div>
+  </div>
+</header>
+
+<!-- ======================= 01 · aegis ======================= -->
+<section class="station" id="s1" data-station="1" data-accent="#f2a33c">
+  <div class="wrap">
+
+    <div class="station-head">
+      <span class="no">Station 01 — industrial control</span>
+      <h2>A relay that opens before the physics can finish.</h2>
+      <p>A conventional intrusion detector watches traffic and raises an alert. By the time anyone reads it, the command has already reached the actuator. Aegis sits inline instead, and refuses.</p>
+    </div>
+
+    <div class="theatre">
+      <figure class="hold">
+        <div class="frame">
+          <canvas data-fig="aegis" width="900" height="640" aria-label="A pressure vessel with its stability envelope; an attacker raises the setpoint until the enforcer cuts the relay"></canvas>
+          <figcaption><span data-cap="aegis">Vessel nominal</span><b data-beat="aegis">01 / 04</b></figcaption>
+        </div>
+      </figure>
+
+      <div class="beats" data-beats="aegis">
+        <div class="beat">
+          <span class="k">The ordinary day</span>
+          <h3>Two variables, coupled</h3>
+          <p>Temperature and pressure are not independent. The vessel tolerates a lot of either one alone, and far less of both together. That relationship is a curve, not a pair of numbers.</p>
+          <p>Every threshold alarm in a traditional plant watches one variable at a time. Each of them can be perfectly satisfied while the process walks straight off the edge.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The command</span>
+          <h3>Nothing here looks like an attack</h3>
+          <p>A supervisory setpoint arrives on the fieldbus. It is well formed. It is signed, if anyone bothered to check. It raises temperature by a modest amount.</p>
+          <p>Taken alone it is unremarkable — which is precisely the point. Coordinated multi-variable stress is the Stuxnet shape: each step defensible, the sequence catastrophic.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The boundary</span>
+          <h3>The envelope is the alarm</h3>
+          <p>Aegis holds a model of the stability manifold and tests the <em>commanded state</em> against it, not the current one. The moment the operating point crosses that curve, the setpoint is refused.</p>
+          <p>Telemetry older than <code>120 s</code> fails the same test. No fresh sensor data, no cross-variable check, no command. Fail closed, never open.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The cut</span>
+          <h3>12.74 milliseconds</h3>
+          <p>Refusal is not enough on its own, so the gateway de-energises an optocoupler relay on GPIO 25 and physically removes the device from the control network. Measured on the bench at <strong>12.74 ms</strong>.</p>
+          <p>Only then does a Random Forest classify what it just saw — <code>stuxnet</code>, <code>fdi_spike</code>, <code>thermal_drift</code> — and hand the label to the report. The model names the attack. It never decides the response.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="open-up">
+      <p class="turn">Now you drive it <b>— push the setpoints past the curve</b></p>
+      <div class="console" data-demo="aegis">
+        <div class="console-bar"><span>Console 01 · enforcement loop</span><span class="sp"></span><span class="lamp on" data-lamp></span><span>live</span></div>
+        <div class="console-body">
+          <div class="duo">
+            <div>
+              <div class="pad">
+                <svg viewBox="0 0 440 240" role="img" aria-label="Stability envelope with the operating point you control">
+                  <path class="safe" data-edge d=""></path>
+                  <line class="ax" x1="38" y1="12" x2="38" y2="212"></line>
+                  <line class="ax" x1="38" y1="212" x2="430" y2="212"></line>
+                  <text class="axl" x="36" y="228">20</text>
+                  <text class="axl" x="214" y="228">TEMPERATURE °C</text>
+                  <text class="axl" x="406" y="228">190</text>
+                  <text class="axl" x="6" y="212">0</text>
+                  <text class="axl" x="6" y="20">12</text>
+                  <text class="axl" x="46" y="26">PRESSURE bar</text>
+                  <text class="axl" x="54" y="198">SAFE OPERATING REGION</text>
+                  <circle data-dot cx="100" cy="150" r="5"></circle>
+                </svg>
+              </div>
+              <div class="ctl" style="margin-top:18px">
+                <div class="ctl-h"><label for="a-t">Setpoint — temperature</label><output data-temp-out id="a-to">60</output></div>
+                <input id="a-t" type="range" data-temp min="20" max="190" step="1" value="60">
+              </div>
+              <div class="ctl">
+                <div class="ctl-h"><label for="a-p">Setpoint — pressure</label><output data-pres-out id="a-po">4.0</output></div>
+                <input id="a-p" type="range" data-pres min="0" max="12" step="0.1" value="4">
+              </div>
+              <div class="presses">
+                <button class="press" data-replay>Replay frame</button>
+                <button class="press" data-stale>Stale telemetry</button>
+                <button class="press" data-rearm>Re-arm relay</button>
+              </div>
+            </div>
+            <div>
+              <dl class="read">
+                <div><dt>State</dt><dd data-state class="ok">NOMINAL</dd></div>
+                <div><dt>Relay GPIO25</dt><dd data-relay>CLOSED</dd></div>
+                <div><dt>Cut latency</dt><dd class="big"><span data-latency>0.00</span> <span>ms</span></dd></div>
+                <div><dt>Classifier</dt><dd data-class>—</dd></div>
+                <div><dt>ATT&amp;CK ICS</dt><dd data-tech style="font-size:10.5px">—</dd></div>
+                <div><dt>Trust</dt><dd data-trust class="ok">100</dd></div>
+              </dl>
+              <div class="tape" data-log aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+        <p class="console-note">Simulation. Same manifold test, same freshness gate, same manual re-arm as the gateway — running in your browser, connected to nothing. 12.74 ms is the measured bench figure, not a timing of this page.</p>
+      </div>
+    </div>
+
+    <dl class="ledger">
+      <div><dt>Cut latency</dt><dd>12.74<small>MS</small></dd></div>
+      <div><dt>Anomaly ROC-AUC</dt><dd>0.9755</dd></div>
+      <div><dt>Policy accuracy</dt><dd>96.08<small>%</small></dd></div>
+      <div><dt>Staleness gate</dt><dd>120<small>S</small></dd></div>
+    </dl>
+
+    <div class="honest">
+      <span class="k">Where it stops</span>
+      <p>Exercised on an ESP32 bench with simulated process dynamics, not a production plant. The manifolds encode a model of the physics; a wrong model is confidently wrong about safety, which is why deterministic invariants sit alongside the learned policy rather than behind it.</p>
+    </div>
+
+    <div class="leave">
+      <a class="press" href="https://github.com/anshulec23-cloud/aegis-ics">Read the source</a>
+      <a class="press" href="#s2">Descend to 02</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 02 · sentinel ======================= -->
+<section class="station" id="s2" data-station="2" data-accent="#5bd1e0">
+  <div class="wrap">
+
+    <div class="station-head">
+      <span class="no">Station 02 — computer vision</span>
+      <h2>Learning only what normal looks like.</h2>
+      <p>Anomalies are, by definition, the thing you have fewest examples of. So Sentinel never learns them. It learns ordinary movement until it can reproduce it, and treats failure to reproduce as the signal.</p>
+    </div>
+
+    <div class="theatre">
+      <figure class="hold">
+        <div class="frame">
+          <canvas data-fig="sentinel" width="900" height="640" aria-label="People walking in a plaza, gaining detection boxes, then track identities, until one sprints and the error spikes"></canvas>
+          <figcaption><span data-cap="sentinel">Raw frames</span><b data-beat="sentinel">01 / 04</b></figcaption>
+        </div>
+      </figure>
+
+      <div class="beats" data-beats="sentinel">
+        <div class="beat">
+          <span class="k">Pixels</span>
+          <h3>A camera sees no people</h3>
+          <p>It sees intensity. Everything else — that there are four humans, that one of them is behaving oddly — is inference stacked on inference, and every layer inherits the mistakes of the one below.</p>
+        </div>
+        <div class="beat">
+          <span class="k">Detection</span>
+          <h3>Boxes, at 25 frames a second</h3>
+          <p>YOLOv8n draws a box around each person. Fast enough to keep up with the camera on modest hardware, which matters more than a point of accuracy — a detector that falls behind real time stops being a detector.</p>
+        </div>
+        <div class="beat">
+          <span class="k">Identity</span>
+          <h3>A box is not a trajectory</h3>
+          <p>DeepSORT carries identity across frames. Only then does motion mean anything: loitering, sprinting, a scuffle all live in <em>how a person moves over time</em>, not in any single frame.</p>
+          <p>Nine numbers per track per frame — normalised centroid, box dimensions, velocity, speed, acceleration, aspect ratio. Aspect ratio is the quiet one: it separates a person standing from a person on the ground.</p>
+        </div>
+        <div class="beat">
+          <span class="k">Surprise</span>
+          <h3>The model fails, usefully</h3>
+          <p>An LSTM autoencoder reconstructs each sequence. Ordinary walking reconstructs almost perfectly. A sprint does not, and the reconstruction error spikes.</p>
+          <p>Rules run alongside: the model catches the <strong>unknown</strong>, the rules keep the named classes stable. Turn fusion off in the console and a harmless blip fires an alarm. That is the trade, made visible.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="open-up">
+      <p class="turn">Now you drive it <b>— scrub to frame 330, then toggle fusion</b></p>
+      <div class="console" data-demo="sentinel">
+        <div class="console-bar"><span>Console 02 · reconstruction error</span><span class="sp"></span><span class="lamp on" data-lamp></span><span>live</span></div>
+        <div class="console-body">
+          <div class="duo">
+            <div>
+              <div class="pad">
+                <svg viewBox="0 0 420 190" role="img" aria-label="Tracked people in the scene">
+                  <rect x="0" y="0" width="420" height="190" fill="#080b0f"></rect>
+                  <line class="gr" x1="0" y1="63" x2="420" y2="63"></line>
+                  <line class="gr" x1="0" y1="126" x2="420" y2="126"></line>
+                  <line class="gr" x1="140" y1="0" x2="140" y2="190"></line>
+                  <line class="gr" x1="280" y1="0" x2="280" y2="190"></line>
+                  <g data-scene></g>
+                </svg>
+              </div>
+              <div class="pad" style="margin-top:9px">
+                <svg viewBox="0 0 420 86" role="img" aria-label="Reconstruction error over time">
+                  <path class="tr" data-trace d=""></path>
+                  <line class="th" data-thresh x1="0" y1="40" x2="420" y2="40"></line>
+                  <line class="cur" data-cursor x1="0" y1="0" x2="0" y2="86"></line>
+                </svg>
+              </div>
+              <div class="ctl" style="margin-top:16px">
+                <div class="ctl-h"><label for="s-f">Timeline — frame</label><output><span data-frame>000</span> <span>/ 519</span></output></div>
+                <input id="s-f" type="range" data-scrub min="0" max="519" step="1" value="0">
+              </div>
+              <div class="line-row">
+                <label for="s-fu">Rule fusion</label>
+                <span class="sw"><input id="s-fu" type="checkbox" data-fuse checked><i></i></span>
+              </div>
+              <div class="presses" style="margin-top:16px"><button class="press" data-play>Play</button></div>
+            </div>
+            <div>
+              <dl class="read">
+                <div><dt>Verdict</dt><dd data-verdict class="ok">NORMAL</dd></div>
+                <div><dt>Recon error</dt><dd class="big" data-err>0.000</dd></div>
+                <div><dt>Threshold</dt><dd>0.340</dd></div>
+                <div><dt>Class</dt><dd data-kind>—</dd></div>
+                <div><dt>Tracks held</dt><dd>3</dd></div>
+              </dl>
+              <div class="tape" data-log aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+        <p class="console-note">Simulation. The trace is synthetic telemetry rather than a trained model's output; the threshold behaviour, fusion rule and track logic are the detector's. Frame 158 is the blip. Frame 330 is the event.</p>
+      </div>
+    </div>
+
+    <dl class="ledger">
+      <div><dt>Detection</dt><dd>25+<small>FPS</small></dd></div>
+      <div><dt>Feature vector</dt><dd>9<small>DIM</small></dd></div>
+      <div><dt>Labels</dt><dd>4</dd></div>
+      <div><dt>Labelled anomalies</dt><dd>0<small>NEEDED</small></dd></div>
+    </dl>
+
+    <div class="honest">
+      <span class="k">Where it stops</span>
+      <p>Unsupervised detection trades a labelling problem for a threshold problem, and reconstruction error has no natural cut-off. Accuracy also inherits YOLOv8's: under heavy occlusion the detector misses people, and anything it misses the tracker never sees. Errors compound down the pipeline rather than cancelling out.</p>
+    </div>
+
+    <div class="leave">
+      <a class="press" href="https://github.com/anshulec23-cloud/digital-surveillance-system">Read the source</a>
+      <a class="press" href="#s3">Descend to 03</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 03 · forensics ======================= -->
+<section class="station" id="s3" data-station="3" data-accent="#a98bff">
+  <div class="wrap">
+
+    <div class="station-head">
+      <span class="no">Station 03 — image forensics</span>
+      <h2>The edit is invisible. Its history is not.</h2>
+      <p>A forged invoice is rarely a crude cut-and-paste. It is a competent edit, exported once, and it looks right to a reviewer with forty more to clear before lunch. What gives it away is not the picture — it is how many times each part of the picture has been compressed.</p>
+    </div>
+
+    <div class="theatre">
+      <figure class="hold">
+        <div class="frame">
+          <canvas data-fig="forensics" width="900" height="640" aria-label="An invoice is compressed, one number is altered, and error level analysis sweeps across to reveal the edit"></canvas>
+          <figcaption><span data-cap="forensics">Document received</span><b data-beat="forensics">01 / 04</b></figcaption>
+        </div>
+      </figure>
+
+      <div class="beats" data-beats="forensics">
+        <div class="beat">
+          <span class="k">The document</span>
+          <h3>One save, one history</h3>
+          <p>A scanned invoice is a JPEG. Every block in it has been through the same quantisation, the same number of times. That uniformity is the baseline — and it is a property of the file, not of what the file depicts.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The edit</span>
+          <h3>Fifty-one thousand becomes ninety-one</h3>
+          <p>Someone opens it, paints over the total, types a new number, saves. The new pixels are sharp and have never been compressed. Everything around them has been, twice.</p>
+          <p>To the eye the document is seamless. Numerically, one rectangle now has a different past from the page it sits on.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The method</span>
+          <h3>Compress it again and subtract</h3>
+          <p>Error level analysis re-saves the image at a known quality and differences the result against the original. Regions already at that quantisation barely move. Fresh, un-compressed regions lose far more — and light up.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The caveat</span>
+          <h3>Which is why one stream is not enough</h3>
+          <p>ELA reacts to <em>any</em> recompression, innocent ones included. Alone it flags half the internet. So the classifier runs two ResNet18 streams — raw pixels and ELA — and fuses them, weighing forensic residue against what the content itself looks like.</p>
+          <p>Drag the quality slider down in the console and watch the whole page light up. That is the false-positive mode, not a bug in the demo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="open-up">
+      <p class="turn">Now you drive it <b>— this one is real, computed on your machine</b></p>
+      <div class="console" data-demo="ela">
+        <div class="console-bar"><span>Console 03 · error level analysis</span><span class="sp"></span><span class="lamp on" data-lamp></span><span>real</span></div>
+        <div class="console-body">
+          <div class="duo">
+            <div>
+              <div class="pad"><canvas data-out width="420" height="270" aria-label="Error level analysis of the sample invoice"></canvas></div>
+              <div class="ctl" style="margin-top:18px">
+                <div class="ctl-h"><label for="e-a">Residual amplification</label><output data-amp-out id="e-ao">×14</output></div>
+                <input id="e-a" type="range" data-amp min="1" max="30" step="1" value="14">
+              </div>
+              <div class="ctl">
+                <div class="ctl-h"><label for="e-q">Recompression quality</label><output data-q-out id="e-qo">95%</output></div>
+                <input id="e-q" type="range" data-q min="70" max="98" step="1" value="95">
+              </div>
+              <div class="line-row">
+                <label for="e-m">Show source document</label>
+                <span class="sw"><input id="e-m" type="checkbox" data-mode><i></i></span>
+              </div>
+            </div>
+            <div>
+              <dl class="read">
+                <div><dt>Verdict</dt><dd data-verdict class="ok">UNIFORM</dd></div>
+                <div><dt>Region / page</dt><dd class="big" data-score>1.00×</dd></div>
+                <div><dt>Flag above</dt><dd>1.80×</dd></div>
+                <div><dt>Method</dt><dd style="font-size:10.5px">ELA · q-step diff</dd></div>
+                <div><dt>Classifier</dt><dd style="font-size:10.5px">not running here</dd></div>
+              </dl>
+              <div class="tape" data-log aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+        <p class="console-note">Not a simulation. The page builds the invoice, compresses it, edits one field so that region has a different history, re-saves, then runs real error level analysis in your browser — recompress, difference, amplify. The CNN is not running here; the forensics are.</p>
+      </div>
+    </div>
+
+    <dl class="ledger">
+      <div><dt>Streams</dt><dd>2</dd></div>
+      <div><dt>Classes</dt><dd>3</dd></div>
+      <div><dt>Backbone</dt><dd>ResNet18</dd></div>
+      <div><dt>Fusion</dt><dd>1024<small>DIM</small></dd></div>
+    </dl>
+
+    <div class="honest">
+      <span class="k">Where it stops</span>
+      <p>The repository ships the pipeline and the training loop, not trained weights — the demo weights are randomly initialised, so its predictions are meaningless until trained on a real corpus. ELA is also a dated signal, strong against splicing and weak against generative models that never produce an intermediate JPEG at all.</p>
+    </div>
+
+    <div class="leave">
+      <a class="press" href="https://github.com/anshulec23-cloud/image-forgery-detection">Read the source</a>
+      <a class="press" href="#s4">Descend to 04</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 04 · cyberrisk ======================= -->
+<section class="station" id="s4" data-station="4" data-accent="#8fd17a">
+  <div class="wrap">
+
+    <div class="station-head">
+      <span class="no">Station 04 — risk quantification</span>
+      <h2>Translating an attack into currency.</h2>
+      <p>Security tooling speaks in severities and CVEs. The credit committee speaks in money. Nothing bridges the two while the incident is still running — which is when the bridge would actually be worth something.</p>
+    </div>
+
+    <div class="theatre">
+      <figure class="hold">
+        <div class="frame">
+          <canvas data-fig="risk" width="900" height="640" aria-label="Telemetry flows through five agents: detector, classifier, isolator, quantifier, reporter, ending in a priced incident"></canvas>
+          <figcaption><span data-cap="risk">Telemetry stream</span><b data-beat="risk">01 / 04</b></figcaption>
+        </div>
+      </figure>
+
+      <div class="beats" data-beats="risk">
+        <div class="beat">
+          <span class="k">The stream</span>
+          <h3>Five agents, one contract each</h3>
+          <p>Telemetry arrives over MQTT. A LangGraph DAG moves it through detector, classifier, isolator, quantifier, reporter — each a separate stage with an explicit contract with the next.</p>
+          <p>Staged as a graph rather than one procedure, any stage can be swapped, re-run or inspected alone, and the state at every hop is a readable object instead of a local variable buried in a call stack.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The decision</span>
+          <h3>Isolation is an action, not a ticket</h3>
+          <p>Above an anomaly score of <code>0.65</code> the isolator publishes micro-segmentation commands and cuts the device off. Containment that waits for a human has already spent the time that mattered.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The arithmetic</span>
+          <h3>Downtime, penalties, regulator</h3>
+          <p>The quantifier multiplies estimated downtime by an hourly loss rate, applies the SLA penalty as a share of it, and adds the regulatory band for the regime the asset sits under.</p>
+          <p>None of it is predicted. All of it is arithmetic on parameters a human supplied, which is the honest description of every financial risk model that has ever shipped.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The discipline</span>
+          <h3>Four lines, not one number</h3>
+          <p>The components are reported separately because they carry very different confidence. Downtime cost is an estimate of an estimate. A regulatory band is close to a known quantity.</p>
+          <p>Rolled into one headline figure, a reader cannot discount them independently — and a single confident number is exactly how this class of tool gets believed when it shouldn't be.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="open-up">
+      <p class="turn">Now you drive it <b>— change the asset and watch the exposure move</b></p>
+      <div class="console" data-demo="loss">
+        <div class="console-bar"><span>Console 04 · loss engine</span><span class="sp"></span><span class="lamp on" data-lamp></span><span>live</span></div>
+        <div class="console-body">
+          <div class="duo">
+            <div>
+              <div class="line-row">
+                <label for="l-a">Asset profile</label>
+                <select id="l-a" data-asset>
+                  <option value="oil_refinery">Oil refinery</option>
+                  <option value="grid_substation">Grid substation</option>
+                  <option value="water_utility">Water utility</option>
+                  <option value="bottling_line">Bottling line</option>
+                </select>
+              </div>
+              <div class="line-row">
+                <label for="l-r">Regulatory regime</label>
+                <select id="l-r" data-reg>
+                  <option value="nis2">EU NIS2</option>
+                  <option value="ferc">US FERC / NERC CIP</option>
+                  <option value="cert">IN CERT-In</option>
+                  <option value="none">None</option>
+                </select>
+              </div>
+              <div class="ctl" style="margin-top:20px">
+                <div class="ctl-h"><label for="l-h">Estimated downtime</label><output data-hours-out id="l-ho">24 h</output></div>
+                <input id="l-h" type="range" data-hours min="1" max="96" step="1" value="24">
+              </div>
+              <div class="ctl">
+                <div class="ctl-h"><label for="l-rate">Hourly loss rate</label><output data-rate-out id="l-rateo">$800k/h</output></div>
+                <input id="l-rate" type="range" data-rate min="10" max="1200" step="10" value="800">
+              </div>
+              <div class="ctl">
+                <div class="ctl-h"><label for="l-s">SLA penalty rate</label><output data-sla-out id="l-so">15%</output></div>
+                <input id="l-s" type="range" data-sla min="0" max="40" step="1" value="15">
+              </div>
+            </div>
+            <div>
+              <dl class="read">
+                <div><dt>Downtime cost</dt><dd data-down>—</dd></div>
+                <div><dt>SLA penalty</dt><dd data-slapen>—</dd></div>
+                <div><dt>Regulatory</dt><dd data-fine>—</dd></div>
+                <div><dt>Total exposure</dt><dd class="big" data-total>—</dd></div>
+                <div><dt>Credit risk</dt><dd data-flag class="ok">—</dd></div>
+              </dl>
+              <div class="tape" data-log aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+        <p class="console-note">Simulation, and deliberately a transparent one: every figure here is arithmetic on sliders you set, exactly as the real engine is arithmetic on parameters an operator sets. The defaults reproduce the worked example in the repository.</p>
+      </div>
+    </div>
+
+    <dl class="ledger">
+      <div><dt>Agents</dt><dd>5</dd></div>
+      <div><dt>Trigger score</dt><dd>0.65</dd></div>
+      <div><dt>Reporting</dt><dd>NIST<small>SP 800-61</small></dd></div>
+      <div><dt>Containment</dt><dd>MQTT</dd></div>
+    </dl>
+
+    <div class="honest">
+      <span class="k">Where it stops</span>
+      <p>The financial model is only as good as its per-device cost parameters, which are entered rather than learned. The engine does the arithmetic faithfully and has no way to know when the inputs are optimistic. Treating its output as a forecast rather than a parameterised estimate is the failure mode this tool invites.</p>
+    </div>
+
+    <div class="leave">
+      <a class="press" href="https://github.com/anshulec23-cloud/aegis-bank">Read the source</a>
+      <a class="press" href="#s5">Descend to 05</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 05 · recon ======================= -->
+<section class="station" id="s5" data-station="5" data-accent="#ff8a6b">
+  <div class="wrap">
+
+    <div class="station-head">
+      <span class="no">Station 05 — navigation</span>
+      <h2>Routing that assumes the network is gone.</h2>
+      <p>Consumer navigation makes two assumptions that fail at exactly the moment navigation matters: that you have connectivity, and that you don't mind a third party knowing where you are going.</p>
+    </div>
+
+    <div class="theatre">
+      <figure class="hold">
+        <div class="frame">
+          <canvas data-fig="recon" width="900" height="640" aria-label="Offline map tiles load, a route is computed locally, then the destination moves outside the tiles and the request falls back to a network service"></canvas>
+          <figcaption><span data-cap="recon">Tiles resident</span><b data-beat="recon">01 / 04</b></figcaption>
+        </div>
+      </figure>
+
+      <div class="beats" data-beats="recon">
+        <div class="beat">
+          <span class="k">The tiles</span>
+          <h3>A map that already lives here</h3>
+          <p>Valhalla runs in a container on the device with road tiles for the region pre-loaded. No request leaves. No account is attached to the journey. The routing graph is simply present.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The route</span>
+          <h3>Two paths, drawn together</h3>
+          <p>Shortest and main-highway are rendered simultaneously rather than one replacing the other. Shortest is not always preferable, and showing both lets an operator make a judgement the router cannot make for them.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The edge</span>
+          <h3>Leaving the tiles</h3>
+          <p>Ask for somewhere outside the loaded bounds and the local engine simply fails. The interesting engineering is in the seam: the backend intercepts that error and re-sends the waypoints to OSRM's global service.</p>
+          <p>You still get a route. What changed is where the computation happened — and whether anything about your destination left the device.</p>
+        </div>
+        <div class="beat">
+          <span class="k">The sweep</span>
+          <h3>Along the path, not around a pin</h3>
+          <p>Standard tooling does point-radius scans. A radius around a destination says nothing about the twelve kilometres you have to traverse to reach it. Telemetry is extracted <em>along</em> the computed route, which is a different question with a different answer.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="open-up">
+      <p class="turn">Now you drive it <b>— drag the marker across the boundary</b></p>
+      <div class="console" data-demo="routing">
+        <div class="console-bar"><span>Console 05 · routing handoff</span><span class="sp"></span><span class="lamp on" data-lamp></span><span>drag it</span></div>
+        <div class="console-body">
+          <div class="duo">
+            <div>
+              <div class="pad">
+                <svg data-map viewBox="0 0 420 250" role="img" aria-label="Route from origin to a destination you can drag">
+                  <rect x="0" y="0" width="420" height="250" fill="#080b0f"></rect>
+                  <line class="gr" x1="0" y1="62" x2="420" y2="62"></line>
+                  <line class="gr" x1="0" y1="125" x2="420" y2="125"></line>
+                  <line class="gr" x1="0" y1="188" x2="420" y2="188"></line>
+                  <line class="gr" x1="105" y1="0" x2="105" y2="250"></line>
+                  <line class="gr" x1="210" y1="0" x2="210" y2="250"></line>
+                  <line class="gr" x1="315" y1="0" x2="315" y2="250"></line>
+                  <rect class="tiles" x="40" y="34" width="230" height="170"></rect>
+                  <text class="axl" x="44" y="28">OFFLINE TILES · DAKSHINA KANNADA</text>
+                  <path class="route" data-path d=""></path>
+                  <circle class="orig" cx="92" cy="168" r="3.5"></circle>
+                  <text class="axl" x="100" y="182">ORIGIN</text>
+                  <circle data-dest cx="212" cy="86" r="6"></circle>
+                </svg>
+              </div>
+              <p class="lab" style="margin-top:10px">Drag the marker. Cross the dashed boundary to force the fallback.</p>
+            </div>
+            <div>
+              <dl class="read">
+                <div><dt>Engine</dt><dd data-engine class="ok">VALHALLA · LOCAL</dd></div>
+                <div><dt>Route length</dt><dd class="big"><span data-dist>0.0</span> <span>km</span></dd></div>
+                <div><dt>Egress</dt><dd data-net>0 B</dd></div>
+                <div><dt>Privacy</dt><dd data-priv class="ok" style="font-size:10.5px">NOTHING LEFT DEVICE</dd></div>
+              </dl>
+              <div class="tape" data-log aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+        <p class="console-note">Simulation. The handoff logic is the backend's — attempt local, intercept the out-of-bounds error, re-send to the network service — drawn on a toy grid rather than real tiles.</p>
+      </div>
+    </div>
+
+    <dl class="ledger">
+      <div><dt>Engines</dt><dd>2</dd></div>
+      <div><dt>Fallback</dt><dd>AUTO</dd></div>
+      <div><dt>Offline egress</dt><dd>0<small>BYTES</small></dd></div>
+      <div><dt>Paths drawn</dt><dd>2</dd></div>
+    </dl>
+
+    <div class="honest">
+      <span class="k">Where it stops</span>
+      <p>Offline routing is only as current as the tiles. A road closed last month is open as far as the local engine is concerned, and the fallback cannot help because the request never looked out of bounds. Tile freshness is a human process, not a software one. Wireless telemetry collection is also governed by local law, and what may be observed passively in one jurisdiction may not be in another.</p>
+    </div>
+
+    <div class="leave">
+      <a class="press" href="https://github.com/anshulec23-cloud/bergg-tactical-recon">Read the source</a>
+      <a class="press" href="#end">Surface</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= closing ======================= -->
+<section class="end" id="end">
+  <div class="wrap">
+    <h2>Every one of these has a section titled “where it stops”.</h2>
+    <p>That is deliberate. A reviewer who finds a limitation you disclosed trusts the rest of it; one who finds a limitation you hid discounts everything. Each number on this page comes from the repository it describes, and each console says plainly whether it is simulating the system or actually running it.</p>
+    <div class="out">
+      <a class="press" href="https://github.com/anshulec23-cloud">All repositories</a>
+      <a class="press" href="https://bergg.me">bergg.me</a>
+      <a class="press" href="#top">Back to the surface</a>
+    </div>
+    <p class="fine">Anshul · B.E. Electronics &amp; Communication · Mangalore, India</p>
+  </div>
+</section>
+
+</main>
+
+<script src="/assets/scene.js" defer></script>
+<script src="/assets/consoles.js" defer></script>
+</body>
+</html>
 
